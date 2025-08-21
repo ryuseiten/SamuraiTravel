@@ -24,4 +24,7 @@ public interface HouseRepository extends JpaRepository<House, Integer> {
     
     @Query("SELECT h FROM House h LEFT JOIN h.reservations r GROUP BY h.id ORDER BY COUNT(r) DESC")
     List<House> findAllByOrderByReservationCountDesc(Pageable pageable);
+    
+    //追加課題用
+    //public Page<House> findByOwnerId(Integer owner_id, Pageable pageable);
 }

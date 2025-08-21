@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS users (
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
+
 CREATE TABLE IF NOT EXISTS houses (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
@@ -40,9 +41,18 @@ CREATE TABLE IF NOT EXISTS houses (
     postal_code VARCHAR(50) NOT NULL,
     address VARCHAR(255) NOT NULL,
     phone_number VARCHAR(50) NOT NULL,
+    owner_id INT NOT NULL,   /*追加課題用*/
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	FOREIGN KEY (owner_id) REFERENCES owners (id)  /*追加課題用*/
 );
+
+/*
+ ALTER TABLE houses ADD COLUMN owner_id INT NULL; 
+ UPDATE houses SET owner_id = 1 WHERE owner_id IS NULL; 
+ ALTER TABLE houses MODIFY COLUMN owner_id INT NOT NULL; 
+ ALTER TABLE houses ADD CONSTRAINT fk_owner FOREIGN KEY (owner_id) REFERENCES owners(id); 
+*/
 
 CREATE TABLE IF NOT EXISTS reservations (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -89,4 +99,21 @@ CREATE TABLE IF NOT EXISTS favorites(
 	FOREIGN KEY (house_id) REFERENCES houses(id),
 	FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+/* 追加課題用　ownersテーブル*/
+CREATE TABLE IF NOT EXISTS owners(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(50) NOT NULL,
+	furigana VARCHAR(50) NOT NULL,
+	postal_code VARCHAR(50) NOT NULL,
+	address VARCHAR(255) NOT NULL,
+	phone_number VARCHAR(50) NOT NULL,
+	email VARCHAR(50) NOT NULL,
+	password VARCHAR(50) NOT NULL
+);
+	
+	
+	
+	
+	
 	
