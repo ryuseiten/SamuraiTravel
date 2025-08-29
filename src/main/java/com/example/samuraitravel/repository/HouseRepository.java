@@ -26,5 +26,5 @@ public interface HouseRepository extends JpaRepository<House, Integer> {
     List<House> findAllByOrderByReservationCountDesc(Pageable pageable);
     
     //追加課題用
-    //public Page<House> findByOwnerId(Integer owner_id, Pageable pageable);
+    public Page<House> findByOwnerRole(Integer owner_Role, Pageable pageable);
 }

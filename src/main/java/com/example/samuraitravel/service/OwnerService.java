@@ -1,4 +1,5 @@
-/*
+/*　課題用　未使用
+
 package com.example.samuraitravel.service;
 
 import org.springframework.data.domain.Page;
@@ -6,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.samuraitravel.entity.House;
+import com.example.samuraitravel.entity.Owner;
 import com.example.samuraitravel.repository.HouseRepository;
 import com.example.samuraitravel.repository.OwnerRepository;
 
@@ -19,11 +21,10 @@ public class OwnerService {
 		this.houseRepository = houseRepository;
 		this.ownerRepository = ownerRepository;
 	}
-	
-	
+		
 	//ログイン中のオーナーのIDを取得する。
-	public Integer getOwnerId() {
-		return ownerRepository.getId();
+	public Owner findOwnerByEmail(String email) {
+		return ownerRepository.findByEmail(email);
 	}
 	
 	//指定されたオーナーIDを持つ民宿をページングで取得する。
@@ -34,5 +35,3 @@ public class OwnerService {
 }
 
 */
-
-//追加課題用

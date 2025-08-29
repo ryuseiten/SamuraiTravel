@@ -14,7 +14,6 @@ import com.example.samuraitravel.entity.User;
 import com.example.samuraitravel.repository.UserRepository;
 
 @Service
-
 public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;
 

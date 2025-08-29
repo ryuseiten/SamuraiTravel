@@ -55,13 +55,10 @@ public class House {
     @Column(name = "updated_at", insertable = false, updatable = false)
     private Timestamp updatedAt;
     
-//追加課題用　ここから
-/*
-    @ManyToOne
-    @JoinColumn(name = "owner_id")
-    private Owner owner;
-*/
-//追加課題用　ここまで
+//追加課題用
+    @Column(name = "owner_Role")
+    private Integer ownerRole;
+
     
     @OneToMany(mappedBy = "house", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Reservation> reservations;

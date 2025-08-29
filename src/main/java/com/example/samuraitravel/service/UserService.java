@@ -76,6 +76,7 @@ public class UserService {
         return !userEditForm.getEmail().equals(user.getEmail());
     }   
     
+    //追加課題にも利用
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }  
@@ -93,4 +94,6 @@ public class UserService {
     public Optional<User> findUserById(Integer id){
     	return userRepository.findById(id);
     }
+    
+
 }

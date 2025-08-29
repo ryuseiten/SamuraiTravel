@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS users (
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
-
+/*
 CREATE TABLE IF NOT EXISTS houses (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
@@ -41,17 +41,19 @@ CREATE TABLE IF NOT EXISTS houses (
     postal_code VARCHAR(50) NOT NULL,
     address VARCHAR(255) NOT NULL,
     phone_number VARCHAR(50) NOT NULL,
-    owner_id INT NOT NULL,   /*追加課題用*/
+    owner_id INT NOT NULL,   
+    owner_Role INT NOT NULL,  
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	FOREIGN KEY (owner_id) REFERENCES owners (id)  /*追加課題用*/
 );
+*/
 
-/*
- ALTER TABLE houses ADD COLUMN owner_id INT NULL; 
- UPDATE houses SET owner_id = 1 WHERE owner_id IS NULL; 
- ALTER TABLE houses MODIFY COLUMN owner_id INT NOT NULL; 
- ALTER TABLE houses ADD CONSTRAINT fk_owner FOREIGN KEY (owner_id) REFERENCES owners(id); 
+
+
+/* ALTER TABLE houses ADD COLUMN owner_Role INT NULL; */
+ UPDATE houses SET owner_Role = 15 WHERE owner_Role IS NULL; 
+/* ALTER TABLE houses MODIFY COLUMN owner_Role INT NOT NULL; */
+/* ALTER TABLE houses ADD CONSTRAINT fk_owner FOREIGN KEY (owner_id) REFERENCES owners(id); 
 */
 
 CREATE TABLE IF NOT EXISTS reservations (

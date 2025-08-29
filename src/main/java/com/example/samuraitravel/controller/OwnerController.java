@@ -1,51 +1,48 @@
-/*
 package com.example.samuraitravel.controller;
 
-import java.util.Optional;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.samuraitravel.entity.House;
+import com.example.samuraitravel.entity.User;
 import com.example.samuraitravel.service.HouseService;
-import com.example.samuraitravel.service.OwnerService;
+import com.example.samuraitravel.service.UserService;
 
 @Controller
 public class OwnerController {
-
-	private final OwnerService ownerService;
-	private final HouseService houseService;
 	
-	public OwnerController(OwnerService ownerService, HouseService houseService) {
-		this.ownerService = ownerService;
+	private final UserService userService;
+	private final HouseService houseService;
+
+	public OwnerController(UserService userService, HouseService houseService) {
+		this.userService = userService;
 		this.houseService = houseService;
 	}
 	
-	@GetMapping("/")
+	@GetMapping("/owner/houses")
 	public String index(Model model,
-						RedirectAttributes redirectAttributes
-			){
+						RedirectAttributes redirectAttributes,
+						Pageable pageable)
+	{
 		
-		Integer ownerId = ownerService.getOwnerId();
-		Optional<House> optionalHouse = houseService.findHouseById(ownerId);
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String email = authentication.getName();
 		
-		if(optionalHouse.isEmpty()) {
-			redirectAttributes.addFlashAttribute("errorMessage", "民宿が存在しません。");
-			return "redirect:/";
-		}
+		User user = userService.findUserByEmail(email);
 		
-		House house = optionalHouse.get();
-		model.addAttribute("house", house);
+		Integer Id = user.getId(); //ログイン中のオーナーのIDを取得
+		Page<House> housePage = houseService.findHousesByOwnerRole(Id, pageable);
 		
-		return "";
-	
+		model.addAttribute("house", housePage);
+		
+		return "owner//index";
+		
 	}
-	
-	
 }
 
-
-*/
-//追加課題用

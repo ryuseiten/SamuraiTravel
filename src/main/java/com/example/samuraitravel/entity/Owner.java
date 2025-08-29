@@ -1,4 +1,5 @@
-/*
+/*　課題用　未使用
+
 package com.example.samuraitravel.entity;
 
 import jakarta.persistence.Column;
@@ -43,5 +44,3 @@ public class Owner {
 }
 
 */
-
-//追加課題用

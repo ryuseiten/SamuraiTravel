@@ -2,6 +2,7 @@
 
 INSERT IGNORE INTO roles(id, name) VALUES (1, 'ROLE_GENERAL');
 INSERT IGNORE INTO roles(id, name) VALUES (2, 'ROLE_ADMIN');
+INSERT IGNORE INTO roles(id, name) VALUES (3, 'ROLE_OWNER');
 
 /* INSERT IGNORE INTO で重複発生時にエラーとならず追加作業をスキップしてくれる*/
 
@@ -18,9 +19,14 @@ INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (10, '侍 祐子', 'サムライ ユウコ', '601-0761', '京都府南丹市美山町高野X-XX-XX', '090-1234-5678', 'yuko.samurai@example.com', 'password', 1, false);
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (11, '侍 秋美', 'サムライ アキミ', '606-8235', '京都府京都市左京区田中西春菜町X-XX-XX', '090-1234-5678', 'akimi.samurai@example.com', 'password', 1, false);
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (12, '侍 信平', 'サムライ シンペイ', '673-1324', '兵庫県加東市新定X-XX-XX', '090-1234-5678', 'shinpei.samurai@example.com', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (15, '侍 オーナー', 'サムライ オーナー', '673-1324', '兵庫県加東市新定X-XX-XX', '090-1234-5678', 'owner.samurai@example.com', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (16, '侍 オーナー2', 'サムライ オーナー2', '997-9977', '宮崎県X市Y町', '050-1234-1234', 'owner2.samurai@example.com', 'password', 3, false);
+
+
+UPDATE users SET role_id = 3  WHERE id = 15;
+
 
 /* housesテーブル */
-/* 追加課題対応のためコメントアウト
 INSERT IGNORE INTO houses (id, name, image_name, description, price, capacity, postal_code, address, phone_number, owner_id) VALUES (1, 'SAMURAIの宿', 'house01.jpg', '最寄り駅から徒歩10分。自然豊かで閑静な場所にあります。長期滞在も可能です。', 6000, 2, '073-0145', '北海道砂川市西五条南X-XX-XX', '012-345-678', '3');
 INSERT IGNORE INTO houses (id, name, image_name, description, price, capacity, postal_code, address, phone_number, owner_id) VALUES (2, 'ペンション SAMURAI', 'house02.jpg', '最寄り駅から徒歩10分。自然豊かで閑静な場所にあります。長期滞在も可能です。', 7000, 3, '030-0945', '青森県青森市桜川X-XX-XX', '012-345-678', '3');
 INSERT IGNORE INTO houses (id, name, image_name, description, price, capacity, postal_code, address, phone_number, owner_id) VALUES (3, 'SAMURAI荘', 'house03.jpg', '最寄り駅から徒歩10分。自然豊かで閑静な場所にあります。長期滞在も可能です。', 8000, 4, '029-5618', '岩手県和賀郡西和賀町沢内両沢X-XX-XX', '012-345-678', '1');
@@ -78,15 +84,15 @@ INSERT IGNORE INTO houses (id, name, image_name, description, price, capacity, p
 INSERT IGNORE INTO houses (id, name, image_name, description, price, capacity, postal_code, address, phone_number, owner_id) VALUES (55, 'ゲストハウス サムライ', 'house05.jpg', '最寄り駅から徒歩10分。自然豊かで閑静な場所にあります。長期滞在も可能です。', 10000, 6, '042-0908', '北海道函館市銅山町X-XX-XX', '012-345-678', '1');
 INSERT IGNORE INTO houses (id, name, image_name, description, price, capacity, postal_code, address, phone_number, owner_id) VALUES (56, 'サムライ屋', 'house06.jpg', '最寄り駅から徒歩10分。自然豊かで閑静な場所にあります。長期滞在も可能です。', 6000, 2, '050-0061', '北海道室蘭市八丁平X-XX-XX', '012-345-678', '1');
 INSERT IGNORE INTO houses (id, name, image_name, description, price, capacity, postal_code, address, phone_number, owner_id) VALUES (57, '民宿 サムライ', 'house07.jpg', '最寄り駅から徒歩10分。自然豊かで閑静な場所にあります。長期滞在も可能です。', 7000, 3, '059-0027', '北海道登別市青葉町X-XX-XX', '012-345-678', '2');
-*/
+
 
 /*追加課題用*/
-UPDATE houses SET owner_id = 2 WHERE id = 1;
+UPDATE houses SET owner_id = 1 WHERE id = 1;
 UPDATE houses SET owner_id = 1 WHERE id = 2;
 UPDATE houses SET owner_id = 3 WHERE id = 3;
 UPDATE houses SET owner_id = 2 WHERE id = 4;
 UPDATE houses SET owner_id = 1 WHERE id = 5;
-UPDATE houses SET owner_id = 3 WHERE id = 6;
+UPDATE houses SET owner_id = 2 WHERE id = 6;
 UPDATE houses SET owner_id = 1 WHERE id = 7;
 UPDATE houses SET owner_id = 2 WHERE id = 8;
 UPDATE houses SET owner_id = 3 WHERE id = 9;
@@ -114,12 +120,12 @@ UPDATE houses SET owner_id = 3 WHERE id = 30;
 UPDATE houses SET owner_id = 1 WHERE id = 31;
 UPDATE houses SET owner_id = 2 WHERE id = 32;
 UPDATE houses SET owner_id = 3 WHERE id = 33;
-UPDATE houses SET owner_id = 1 WHERE id = 34;
+UPDATE houses SET owner_id = 2 WHERE id = 34;
 UPDATE houses SET owner_id = 2 WHERE id = 35;
 UPDATE houses SET owner_id = 3 WHERE id = 36;
 UPDATE houses SET owner_id = 1 WHERE id = 37;
 UPDATE houses SET owner_id = 2 WHERE id = 38;
-UPDATE houses SET owner_id = 3 WHERE id = 39;
+UPDATE houses SET owner_id = 2 WHERE id = 39;
 UPDATE houses SET owner_id = 1 WHERE id = 40;
 UPDATE houses SET owner_id = 2 WHERE id = 41;
 UPDATE houses SET owner_id = 3 WHERE id = 42;
@@ -135,9 +141,10 @@ UPDATE houses SET owner_id = 3 WHERE id = 51;
 UPDATE houses SET owner_id = 1 WHERE id = 52;
 UPDATE houses SET owner_id = 2 WHERE id = 53;
 UPDATE houses SET owner_id = 3 WHERE id = 54;
-UPDATE houses SET owner_id = 1 WHERE id = 55;
+UPDATE houses SET owner_id = 2 WHERE id = 55;
 UPDATE houses SET owner_id = 2 WHERE id = 56;
 UPDATE houses SET owner_id = 3 WHERE id = 57;
+
 
 
 /* reservationsテーブル */

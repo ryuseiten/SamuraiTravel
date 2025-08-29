@@ -81,7 +81,7 @@ public class HouseService {
     // 指定された宿泊料金以下の民宿を宿泊料金が安い順に並べ替え、ページングされた状態で取得する
     public Page<House> findHousesByPriceLessThanEqualOrderByPriceAsc(Integer price, Pageable pageable) {
         return houseRepository.findByPriceLessThanEqualOrderByPriceAsc(price, pageable);
-    }
+    }	
 
     // すべての民宿を作成日時が新しい順に並べ替え、ページングされた状態で取得する
     public Page<House> findAllHousesByOrderByCreatedAtDesc(Pageable pageable) {
@@ -104,6 +104,10 @@ public class HouseService {
     	return houseRepository.findAllByOrderByReservationCountDesc(PageRequest.of(0,  3));
     }
     
+    //追加課題用    ログイン中のユーザーIDを使い、一致するRoleIdの宿を取得
+    public Page<House> findHousesByOwnerRole(Integer RoleId, Pageable pageable){
+    	return houseRepository.findByOwnerRole(RoleId, pageable);
+    }
     
     
     @Transactional
