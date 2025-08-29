@@ -41,7 +41,7 @@ public class OwnerController {
 		
 		model.addAttribute("house", housePage);
 		
-		return "owner//index";
+		return "owner/index";
 		
 	}
 }
