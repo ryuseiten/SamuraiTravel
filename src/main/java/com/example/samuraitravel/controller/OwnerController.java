@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.samuraitravel.entity.House;
@@ -15,6 +16,7 @@ import com.example.samuraitravel.service.HouseService;
 import com.example.samuraitravel.service.UserService;
 
 @Controller
+@RequestMapping("/owner")
 public class OwnerController {
 	
 	private final UserService userService;
@@ -25,7 +27,7 @@ public class OwnerController {
 		this.houseService = houseService;
 	}
 	
-	@GetMapping("/owner/houses")
+	@GetMapping
 	public String index(Model model,
 						RedirectAttributes redirectAttributes,
 						Pageable pageable)
