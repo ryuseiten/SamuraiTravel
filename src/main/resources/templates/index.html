@@ -52,7 +52,7 @@
                         <span th:text="${successMessage}"></span>
                     </div>
                 </div>
-
+<li class="nav-item dropdown" sec:authorize="hasAnyRole('ROLE_GENERAL', 'ROLE_ADMIN')">
                 <div class="border-bottom mb-4 py-4">
                     <div class="container samuraitravel-container my-2">
                         <form method="get" th:action="@{/houses}" class="samuraitravel-search-form">
@@ -474,6 +474,65 @@
                         </div>
                     </div>
                 </div>
+</li>
+
+<!-- オーナーのみ表示 -->
+<li class="nav-item dropdown" sec:authorize="hasRole('ROLE_OWNER')">
+	
+			  <div class="container pt-4 pb-5 samuraitravel-container">
+				  <div class="row justify-content-center">
+					  <div class="col-xxl-9 col-xl-10 col-lg-11">
+						  <h1 class="mb-4 text-center">民宿一覧</h1>
+						  
+						  <table class="table">
+							  <thead>
+								  <tr>
+									  <th scope="col">ID</th>
+									  <th scope="col">民宿名</th>
+									  <th scope="col">郵便番号</th>
+									  <th scope="col">住所</th>
+									  <th scope="col">電話番号</th>
+								  </tr>
+							  </thead>
+							  <tbody>
+								  <tr th:each="house : ${ownerHouse}">
+								  	<td th:text="${house.id}"></td>
+								  	<td th:text="${house.name}"></td>
+								  	<td th:text="${house.postalCode}"></td>
+								  	<td th:text="${house.address}"></td>
+								  	<td th:text="${house.phoneNumber}"></td>
+								  	<td><a th:href="@{/houses/{id}(id=${house.id})}">詳細</a></td>
+							  </tbody>
+						  </table>
+<!--						  
+						  <div th:if="${housePage.getTotalPages() > 1}" class="d-flex justify-content-center">
+							  <nav aria-label="民宿一覧ページ">
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <span th:if="${housePage.isFirst()}" class="page-link disabled">前</span>
+                                            <a th:unless="${housePage.isFirst()}" th:href="@{/admin/houses(page = ${housePage.getNumber() - 1}, keyword = ${keyword})}" class="page-link samuraitravel-page-link">前</a>
+                                        </li>
+                                        <li th:each="i : ${#numbers.sequence(0, housePage.getTotalPages() - 1)}" class="page-item">
+                                            <span th:if="${i == housePage.getNumber()}" class="page-link active samuraitravel-active" th:text="${i + 1}"></span>
+                                            <a th:unless="${i == housePage.getNumber()}" th:href="@{/admin/houses(page = ${i}, keyword = ${keyword})}" class="page-link samuraitravel-page-link" th:text="${i + 1}"></a>
+                                        </li>
+                                        <li class="page-item">
+                                            <span th:if="${housePage.isLast()}" class="page-link disabled">次</span>
+                                            <a th:unless="${housePage.isLast()}" th:href="@{/admin/houses(page = ${housePage.getNumber() + 1}, keyword = ${keyword})}" class="page-link samuraitravel-page-link">次</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+							  </nav>
+						  </div>
+					  </div>
+				  </div>
+			  </div>
+
+-->
+<!-- 以上、オーナーのみ表示　-->
+	
+</li>	
+
             </main>
 
             <div th:replace="~{fragment :: footer}"></div>

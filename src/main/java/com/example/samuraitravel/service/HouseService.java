@@ -105,8 +105,8 @@ public class HouseService {
     }
     
     //追加課題用    ログイン中のユーザーIDを使い、一致するRoleIdの宿を取得
-    public Page<House> findHousesByOwnerRole(Integer RoleId, Pageable pageable){
-    	return houseRepository.findByOwnerRole(RoleId, pageable);
+    public List<House> findHousesByOwnerRole(Integer RoleId){
+    	return houseRepository.findByOwnerRole(RoleId);
     }
     
     

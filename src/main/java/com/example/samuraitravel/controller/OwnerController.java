@@ -1,3 +1,4 @@
+/*
 package com.example.samuraitravel.controller;
 
 import org.springframework.data.domain.Page;
@@ -48,3 +49,4 @@ public class OwnerController {
 	}
 }
 
+*/
