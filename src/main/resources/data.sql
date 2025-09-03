@@ -19,17 +19,19 @@ INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (10, '侍 祐子', 'サムライ ユウコ', '601-0761', '京都府南丹市美山町高野X-XX-XX', '090-1234-5678', 'yuko.samurai@example.com', 'password', 1, false);
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (11, '侍 秋美', 'サムライ アキミ', '606-8235', '京都府京都市左京区田中西春菜町X-XX-XX', '090-1234-5678', 'akimi.samurai@example.com', 'password', 1, false);
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (12, '侍 信平', 'サムライ シンペイ', '673-1324', '兵庫県加東市新定X-XX-XX', '090-1234-5678', 'shinpei.samurai@example.com', 'password', 1, false);
-INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (15, '侍 オーナー', 'サムライ オーナー', '673-1324', '兵庫県加東市新定X-XX-XX', '090-1234-5678', 'owner.samurai@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 1, false);
-INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (16, '侍 オーナー2', 'サムライ オーナー2', '997-9977', '宮崎県X市Y町', '050-1234-1234', 'owner2.samurai@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 3, false);
+INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (15, '侍 オーナー', 'サムライ オーナー', '673-1324', '兵庫県加東市新定X-XX-XX', '090-1234-5678', 'owner.samurai@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 1, true);
+INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (16, '侍 オーナー2', 'サムライ オーナー2', '997-9977', '宮崎県X市Y町', '050-1234-1234', 'owner2.samurai@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 3, true);
 
 
 /*追加課題用*/
 /*UPDATE users SET role_id = 3  WHERE id = 15;*/
+/*
 UPDATE users SET password = "$2a$10$wvDuF4kuFBO1C.M/IPOP7eHhYZUU0qKCJfirghLS.rsmqjyf/Z2Y6" WHERE id = 15;
 UPDATE users SET password = "$2a$10$wvDuF4kuFBO1C.M/IPOP7eHhYZUU0qKCJfirghLS.rsmqjyf/Z2Y6" WHERE id = 16;
 
 UPDATE users SET enabled = true WHERE id = 15;
 UPDATE users SET enabled = true WHERE id = 16;
+*/
 
 /* housesテーブル */
 INSERT IGNORE INTO houses (id, name, image_name, description, price, capacity, postal_code, address, phone_number, owner_id) VALUES (1, 'SAMURAIの宿', 'house01.jpg', '最寄り駅から徒歩10分。自然豊かで閑静な場所にあります。長期滞在も可能です。', 6000, 2, '073-0145', '北海道砂川市西五条南X-XX-XX', '012-345-678', '3');

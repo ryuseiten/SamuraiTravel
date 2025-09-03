@@ -1,23 +1,17 @@
-/*
 package com.example.samuraitravel.controller;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.samuraitravel.entity.House;
-import com.example.samuraitravel.entity.User;
 import com.example.samuraitravel.service.HouseService;
 import com.example.samuraitravel.service.UserService;
 
 @Controller
-@RequestMapping("/owner")
 public class OwnerController {
 	
 	private final UserService userService;
@@ -28,25 +22,41 @@ public class OwnerController {
 		this.houseService = houseService;
 	}
 	
-	@GetMapping
-	public String index(Model model,
-						RedirectAttributes redirectAttributes,
-						Pageable pageable)
-	{
+/*	@GetMapping("/owner/houses/{id}")
+	public String index(Model model, Pageable pageable) {
 		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String email = authentication.getName();
-		
-		User user = userService.findUserByEmail(email);
-		
-		Integer Id = user.getId(); //ログイン中のオーナーのIDを取得
-		Page<House> housePage = houseService.findHousesByOwnerRole(Id, pageable);
-		
-		model.addAttribute("house", housePage);
-		
-		return "owner/index";
-		
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+
+        System.out.printf(email); //確認用
+        
+        User user = userService.findUserByEmail(email);
+
+        List<House> houseList = new ArrayList<>();
+
+        if (user != null) {
+            Integer Id = user.getId(); // ログイン中のオーナーのIDを取得
+            houseList = houseService.findHousesByOwnerRole(Id);
+           
+            } else {
+            System.out.printf("★ownercontrollerがnullです★"); //確認用
+        }
+
+        
+        model.addAttribute("ownerHouse", houseList);
+
+        return "owner/show";
 	}
+*/
+	@GetMapping("/owner/houses/{id}")
+	public String show(@PathVariable("id") Integer id, Model model) {
+	    House house = houseService.findById(id);
+	    if (house == null) {
+	        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "民宿が見つかりません");
+	    }
+	    model.addAttribute("house", house); 
+	    return "owner/show";
+	}
+	
 }
 
-*/

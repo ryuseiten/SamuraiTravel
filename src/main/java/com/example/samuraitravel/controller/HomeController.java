@@ -36,8 +36,8 @@ public class HomeController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
 
-        System.out.printf(email); //確認用
-        
+      System.out.printf(email); //確認用
+    
         User user = userService.findUserByEmail(email);
 
         List<House> houseList = new ArrayList<>();
@@ -47,7 +47,7 @@ public class HomeController {
             houseList = houseService.findHousesByOwnerRole(Id);
             System.out.print("nullではない。");  //確認用
             } else {
-            //housePage = List.empty(); // 空のページを返す
+           //housePage = List.empty(); // 空のページを返す
             System.out.printf("nullです。"); //確認用
         }
 
@@ -55,7 +55,6 @@ public class HomeController {
         model.addAttribute("ownerHouse", houseList);
 
         return "index";
-
 	}
-	
+
 }

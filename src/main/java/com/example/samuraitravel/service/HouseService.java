@@ -11,9 +11,11 @@ import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.samuraitravel.entity.House;
 import com.example.samuraitravel.form.HouseEditForm;
@@ -109,6 +111,11 @@ public class HouseService {
     	return houseRepository.findByOwnerRole(RoleId);
     }
     
+    public House findById(Integer id) {
+        return houseRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "民宿が見つかりません"));
+    }
+
     
     @Transactional
     public void createHouse(HouseRegisterForm houseRegisterForm) {
