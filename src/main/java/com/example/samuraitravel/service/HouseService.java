@@ -107,10 +107,12 @@ public class HouseService {
     }
     
     //追加課題用    ログイン中のユーザーIDを使い、一致するRoleIdの宿を取得
+    //↓使ってない
     public List<House> findHousesByOwnerRole(Integer RoleId){
     	return houseRepository.findByOwnerRole(RoleId);
     }
     
+    //追加課題用
     public House findById(Integer id) {
         return houseRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "民宿が見つかりません"));

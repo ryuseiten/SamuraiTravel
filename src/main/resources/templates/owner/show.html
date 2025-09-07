@@ -16,7 +16,7 @@
 						<div class="col-xl-5 col-lg-6 col-md-8">
 							<nav class="breadcrumb mb-0">
 								<ol class="breadcrumb mb-0">
-									<li class="breadcrumb-item"><a th:href="@{/}">トップページ</a></li>
+									<li class="breadcrumb-item"><a th:href="@{/}">ホーム</a></li>
 									<li class="breadcrumb-item active" aria-current="page">民宿詳細（オーナー用）</li>
 								</ol>
 							</nav>
@@ -25,7 +25,7 @@
 							
 							<div class="d-flex justify-content-end arign-items-end mb-3">
 								<div>
-									<a th:href="@{/owner/{id}/edit(id=${house.id})} ">編集</a>    <!--HTMLの作成が必要-->
+									<a th:href="@{/owner/houses/{id}/edit(id=${house.id})} ">編集</a>    <!--HTMLの作成が必要--> 
 								</div>
 							</div>
 							
