@@ -1,5 +1,7 @@
 package com.example.samuraitravel.controller;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,19 +15,20 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.samuraitravel.entity.House;
+import com.example.samuraitravel.entity.Reservation;
 import com.example.samuraitravel.form.HouseEditForm;
 import com.example.samuraitravel.service.HouseService;
-import com.example.samuraitravel.service.UserService;
+import com.example.samuraitravel.service.ReservationService;
 
 @Controller
 public class OwnerController {
 	
-	private final UserService userService;
 	private final HouseService houseService;
+	private final ReservationService reservationService;
 
-	public OwnerController(UserService userService, HouseService houseService) {
-		this.userService = userService;
+	public OwnerController(HouseService houseService, ReservationService reservationService) {
 		this.houseService = houseService;
+		this.reservationService = reservationService;
 	}
 	
 	@GetMapping("/owner/houses/{id}")
@@ -73,7 +76,17 @@ public class OwnerController {
 		return "redirect:/owner/houses/" + id; // 詳細ページに戻す  
 		//千田メモ redirect 表示させるHTMLのパス？
 		//リダイレクト先のURL=>それに対応するGetMappingが必要。
-
+	}
+	
+	@GetMapping("/owner/houses/{id}/reserve")
+	public String reserve(@PathVariable(name="id") Integer id,RedirectAttributes redirectAttributes, Model model, Pageable pageable) {
+	
+		Page<Reservation> reservationPage = reservationService.findReservationsByHouseId(id, pageable);
+	
+		model.addAttribute("reservationPage", reservationPage);
+		
+	return "owner/reservation";
+	
 	}
 	
 }

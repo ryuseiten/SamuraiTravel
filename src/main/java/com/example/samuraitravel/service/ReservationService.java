@@ -33,6 +33,12 @@ public class ReservationService {
         this.userRepository = userRepository;
     }
 
+    //追加課題用 House情報をキーに予約情報を取得する
+    public Page<Reservation> findReservationsByHouseId(Integer houseId, Pageable pageable){
+    	return reservationRepository.findByHouse_Id(houseId, pageable);
+    	
+    }
+    
     // 指定されたユーザーに紐づく予約を作成日時が新しい順に並べ替え、ページングされた状態で取得する
     public Page<Reservation> findReservationsByUserOrderByCreatedAtDesc(User user, Pageable pageable) {
         return reservationRepository.findByUserOrderByCreatedAtDesc(user, pageable);
@@ -106,5 +112,9 @@ public class ReservationService {
     	
     	reservationRepository.save(reservation);
     }
+    
+
+    
+    
     
 }

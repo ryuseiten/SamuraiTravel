@@ -10,4 +10,5 @@ import com.example.samuraitravel.entity.User;
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
     public Page<Reservation> findByUserOrderByCreatedAtDesc(User user, Pageable pageable);
     public Reservation findFirstByOrderByIdDesc();
+    public Page<Reservation> findByHouse_Id(Integer houseId, Pageable pageable);
 }
